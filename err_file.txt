@@ -1,0 +1,66 @@
+{
+size = 0
+capacity = 3
+data[0x5572f5e05480]
+	}
+	[2] = NAN(POISON)
+	[1] = NAN(POISON)
+	[0] = NAN(POISON)
+	}
+}
+{
+size = 1
+capacity = 3
+data[0x5572f5e05480]
+	}
+	[2] = NAN(POISON)
+	[1] = NAN(POISON)
+	*[0] = 2.6
+	}
+}
+{
+size = 2
+capacity = 3
+data[0x5572f5e05480]
+	}
+	[2] = NAN(POISON)
+	*[1] = 5
+	*[0] = 2.6
+	}
+}
+{
+size = 3
+capacity = 3
+data[0x5572f5e05480]
+	}
+	*[2] = 5
+	*[1] = 5
+	*[0] = 2.6
+	}
+}
+{
+size = 4
+capacity = 6
+data[0x5572f5e05480]
+	}
+	[5] = NAN(POISON)
+	[4] = NAN(POISON)
+	*[3] = 5
+	*[2] = 5
+	*[1] = 5
+	*[0] = 2.6
+	}
+}
+{
+size = 3
+capacity = 6
+data[0x5572f5e05480]
+	}
+	[5] = NAN(POISON)
+	[4] = NAN(POISON)
+	[3] = NAN(POISON)
+	*[2] = 5
+	*[1] = 5
+	*[0] = 2.6
+	}
+}
