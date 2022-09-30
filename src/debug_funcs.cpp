@@ -14,9 +14,20 @@ int returnStackError(Stack *stk)
 
    stk->code_of_error |= CHECK((stk->size > stk->capacity), STACK_ERROR_OVERSIZED);
 
+   stk->code_of_error |= CHECK((!checkLeftBufCanary(stk)), STACK_ERROR_LEFTBUF_CANARY_DIED);
+
+   stk->code_of_error |= CHECK((!checkRightBufCanary(stk)), STACK_ERROR_RIGHTBUF_CANARY_DIED);
+
+   stk->code_of_error |= CHECK((!checkLeftStructCanary(stk)), STACK_ERROR_LEFTSTRUCT_CANARY_DIED);
+
+   stk->code_of_error |= CHECK((!checkRightStructCanary(stk)), STACK_ERROR_RIGHTSTRUCT_CANARY_DIED);
+
    return stk->code_of_error;
 
 }
+
+//todo simplify stack strerror - print err_code
+//todo documentation
 
 const char * stackStrError(Stack *stk)
 {
@@ -33,7 +44,19 @@ const char * stackStrError(Stack *stk)
         strcat(result, "ERROR: Capacity < 0\n");
 
     if (stk->code_of_error & STACK_ERROR_OVERSIZED)
-        strcat(result, "ERROR: Size > capacity\n");   
+        strcat(result, "ERROR: Size > capacity\n");
+
+    if (stk->code_of_error & STACK_ERROR_LEFTBUF_CANARY_DIED)
+        strcat(result, "ERROR: LEFT BUF CANARY IS DEAD\n");
+
+    if (stk->code_of_error & STACK_ERROR_RIGHTBUF_CANARY_DIED)
+        strcat(result, "ERROR: RIGHT BUF CANARY IS DEAD\n");
+   
+   if (stk->code_of_error & STACK_ERROR_LEFTSTRUCT_CANARY_DIED)
+      strcat(result, "ERROR: RIGHT STRUCT CANARY IS DEAD\n");
+
+   if (stk->code_of_error & STACK_ERROR_RIGHTSTRUCT_CANARY_DIED)
+      strcat(result, "ERROR: RIGHT STRUCT CANARY IS DEAD\n");
 
     if(stk->code_of_error == 0)
      {
@@ -44,23 +67,29 @@ const char * stackStrError(Stack *stk)
 
 }
 
-
 Stack_Error printStack(Stack *stk)
 {
    fprintf(err_file, "{\n" 
                      "size = %d\n"
                      "capacity = %d\n"
                      "data[%p]\n"
+                     "code_of_error = %d\n"
+                     "buf    canaries: %ld %ld\n"
+                     "struct canaries: %ld %ld\n"
                      "\t}\n",
-                  stk->size, stk->capacity, stk->data);
+                  stk->size, stk->capacity, &DATA_ACCESS(0),
+                  stk->code_of_error, 
+                  LEFT_BUF_CANARY, RIGHT_BUF_CANARY,
+                  stk->left_canary, stk->right_canary);
 
    int counter = stk->capacity;
    while(counter--)
    {
-      if (isPoison(stk->data[counter]))
+      if (isPoison(DATA_ACCESS(counter)))
          fprintf(err_file, "\t[%d] = NAN(POISON)\n", counter);
       else
-         fprintf(err_file, "\t*[%d] = %g\n", counter, stk->data[counter]);  
+         fprintf(err_file, "\t*[%d] = \n", counter, DATA_ACCESS(counter));  
+         print_element(DATA_ACCESS(...));//для всех базовых типов + в доке фуекцию попросить у пользователь elem_t TODO переопределение
    }
 
    fprintf(err_file, "\t}\n}\n");
@@ -81,9 +110,12 @@ Stack_Error stackDump(Stack *stk, const char * name_of_file, const char * name_o
    fprintf(err_file, "%s", stackStrError(stk));
 #endif
 
-#if ERR_FILE == STDERR
-   fprintf(err_file, "\e[0;31m %s \e[0m", stackStrError(stk));
-#endif
+// #if ERR_FILE == STDERR
+//    fprintf(err_file, "\e[0;31m%s\e[0m", stackStrError(stk));
+// #endif
+   
+   fprintf(err_file, "CANARIES STATUS IN BUFFER: %d %d\n", checkLeftBufCanary(stk), checkRightBufCanary(stk));
+   fprintf(err_file, "CANARIES STATUS IN STRUCT: %d %d\n", checkLeftStructCanary(stk), checkRightStructCanary(stk));
 
 #ifdef DEBUG  
    ASSERTED(); 

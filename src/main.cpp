@@ -17,11 +17,12 @@ int main()
 #ifdef DEBUG  
    ASSERTED(); 
 #endif
-    stackCtor(stk1, 3);
+    stackCtor(stk1, 8);
 #ifdef DEBUG  
    ASSERTED(); 
 #endif
-    printStack(&stk1);
+    ASSERT_OK(&stk1);
+    // printStack(&stk1);
 #ifdef DEBUG  
    ASSERTED(); 
 #endif
@@ -30,50 +31,69 @@ int main()
    ASSERTED(); 
 #endif
     printStack(&stk1);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    stackPush(&stk1, 5);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif    
-    printStack(&stk1);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    stackPush(&stk1, 5);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    printStack(&stk1);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    stackPush(&stk1, 5);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    printStack(&stk1);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    elem_t value = 0.0;
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
+
+    elem_t value = 0.0;  
     stackPop(&stk1, &value);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
+
     printStack(&stk1);
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
-    free((void *)stk1.data); 
-    // ASSERTED();
+    stackDtor(&stk1);
+
     fclose(err_file);       
-#ifdef DEBUG  
-   ASSERTED(); 
-#endif
+
     return 1;
 }
+
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+
+
+
+
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     printStack(&stk1);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+
+
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     printStack(&stk1);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     stackPush(&stk1, 5);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif    
+//     printStack(&stk1);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     stackPush(&stk1, 5);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     printStack(&stk1);
+
+//     stackPush(&stk1, 5);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     printStack(&stk1);
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+//     elem_t value = 0.0;
+// #ifdef DEBUG  
+//    ASSERTED(); 
+// #endif
+

@@ -1,66 +1,59 @@
 {
-size = 0
-capacity = 3
-data[0x5572f5e05480]
+size = 1
+capacity = 8
+data[0x55a6adc43488]
+code_of_error = 0
+buf    canaries: 3135106354 3135106354
+struct canaries: 3735936685 3735936685
 	}
+	[7] = NAN(POISON)
+	[6] = NAN(POISON)
+	[5] = NAN(POISON)
+	[4] = NAN(POISON)
+	[3] = NAN(POISON)
+	[2] = NAN(POISON)
+	[1] = NAN(POISON)
+	*[0] = 2.6
+	}
+}
+{
+size = 0
+capacity = 8
+data[0x55a6adc43488]
+code_of_error = 0
+buf    canaries: 3135106354 3135106354
+struct canaries: 3735936685 3735936685
+	}
+	[7] = NAN(POISON)
+	[6] = NAN(POISON)
+	[5] = NAN(POISON)
+	[4] = NAN(POISON)
+	[3] = NAN(POISON)
 	[2] = NAN(POISON)
 	[1] = NAN(POISON)
 	[0] = NAN(POISON)
 	}
 }
+stackDtor at src/stack_func.cpp(134)
+ERROR: LEFT BUF CANARY IS DEAD
+CANARIES STATUS IN BUFFER: 0 1
+CANARIES STATUS IN STRUCT: 1 1
+Stack[0x7ffce913c8c0] stk1 at main at src/main.cpp(20)
 {
-size = 1
-capacity = 3
-data[0x5572f5e05480]
+size = 0
+capacity = 8
+data[0x55a6adc43488]
+code_of_error = 128
+buf    canaries: 22991789123 3135106354
+struct canaries: 3735936685 3735936685
 	}
-	[2] = NAN(POISON)
-	[1] = NAN(POISON)
-	*[0] = 2.6
-	}
-}
-{
-size = 2
-capacity = 3
-data[0x5572f5e05480]
-	}
-	[2] = NAN(POISON)
-	*[1] = 5
-	*[0] = 2.6
-	}
-}
-{
-size = 3
-capacity = 3
-data[0x5572f5e05480]
-	}
-	*[2] = 5
-	*[1] = 5
-	*[0] = 2.6
-	}
-}
-{
-size = 4
-capacity = 6
-data[0x5572f5e05480]
-	}
-	[5] = NAN(POISON)
-	[4] = NAN(POISON)
-	*[3] = 5
-	*[2] = 5
-	*[1] = 5
-	*[0] = 2.6
-	}
-}
-{
-size = 3
-capacity = 6
-data[0x5572f5e05480]
-	}
+	[7] = NAN(POISON)
+	[6] = NAN(POISON)
 	[5] = NAN(POISON)
 	[4] = NAN(POISON)
 	[3] = NAN(POISON)
-	*[2] = 5
-	*[1] = 5
-	*[0] = 2.6
+	[2] = NAN(POISON)
+	[1] = NAN(POISON)
+	*[0] = -1.05051e-299
 	}
 }
